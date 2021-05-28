@@ -59,7 +59,7 @@ main {
 }
 
 
-.item-number{
+.item-number p{
   background: rgb(255, 132, 132);
   border-radius: 50%;
   font-size: medium;

@@ -60,10 +60,6 @@ export default class Nav extends Component {
                 
                 </div>
             </div>
-                {/* <div className='item-number'>
-                        {cartItems.length === 0 ? null : (
-                          <p>{cartItems.reduce((a,c) => a + c.count, 0)}</p>)}   
-                </div> */}
                                
                 {aboutUs && (
                     <Modal 
