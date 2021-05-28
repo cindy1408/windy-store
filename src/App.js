@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       products: data.products,
-      cartItems: [],
+      cartItems: localStorage.getItem("cartItems") ?JSON.parse(localStorage.getItem("cartItems")) : [] ,
       type:""
     }
     this.filterProducts = this.filterProducts.bind(this)
@@ -28,6 +28,7 @@ class App extends React.Component {
         cartItems.push({...product, count: 1});
       }
     this.setState({cartItems})
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
 
   removeFromCart = (item) => {
@@ -35,6 +36,9 @@ class App extends React.Component {
         this.setState({
           cartItems: cartItems.filter( x => x.id !== item.id ),
         })
+        localStorage.setItem(
+          "cartItems", 
+          JSON.stringify(cartItems.filter( x => x.id !== item.id )));
   }
 
   filterProducts (event) {
@@ -51,6 +55,11 @@ class App extends React.Component {
 
     }
   }
+
+  createOrder = (order) => {
+    alert("Need to save order for: " + order.name)
+  };
+
   render () {
     return (
       <div className='grid-container'>
@@ -59,7 +68,8 @@ class App extends React.Component {
           <Nav 
             cartItems={this.state.cartItems} 
             addToCart={this.addToCart}
-            removeFromCart={this.removeFromCart} />
+            removeFromCart={this.removeFromCart}
+            createOrder={this.createOrder} />
         </header>
         <main>
           <div className='content'>

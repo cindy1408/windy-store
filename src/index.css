@@ -14,14 +14,6 @@ button
   color: green
 }
 
-a{
-  text-decoration: none;
-  color: #5c9c53
-}
-a:hover {
-  cursor: pointer;
-  color: gold;
-}
 
 .grid-container {
   display: grid;
@@ -53,9 +45,29 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
   padding: 2rem;
   font-size: large;
   margin: 0
+}
+.nav button {
+  border: none;
+  width: 10rem;
+}
+.checkout{
+  position: relative;
+}
+
+
+.item-number{
+  background: rgb(255, 132, 132);
+  border-radius: 50%;
+  font-size: medium;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  top: 15%;
+  right: 30%;
 }
 
 footer {
@@ -122,9 +134,11 @@ button {
   background-color: #c7eec2;
   width: 40%;
 }
-button:hover {
-  background-color:gold ;
+button:hover{
+  color:gold;
   cursor: pointer;
+  font-weight: 600;
+  transform: scale(1.2)
 }
 
 /* Filter */

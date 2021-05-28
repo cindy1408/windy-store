@@ -9,6 +9,10 @@ export default class Nav extends Component {
         this.state = {
             aboutUs: null,
             checkout: null,
+            showCheckout: false,
+            name: "", 
+            email: "",
+            address: "",
         }
     }
     openModalAbout = () => {
@@ -24,22 +28,43 @@ export default class Nav extends Component {
     closeModalCheckout = () => {
         this.setState({checkout: false});
     }
+    handleInput = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+    createOrder = (e) => {
+        e.preventDefault();
+        const order = {
+            name: this.state.name,
+            email: this.state.email,
+            address: this.state.address,
+            cartItems: this.state.cartItems,
+        }
+        this.props.createOrder(order);
+    }
     render() {
         const {aboutUs, checkout} = this.state;
         const {cartItems} = this.props;
         return (
+            <div>
             <div className='nav'>
                 <button onClick={() => this.openModalAbout({aboutUs})}>About Us</button> 
-                <a href='/'>Shop</a>
+                <button >Review</button>
+                
+            
                 <div className='checkout'>
+                    <button onClick={() => this.openModalCheckout({checkout})}><i className="shopping basket icon"></i></button>
                     <div className='item-number'>
                         {cartItems.length === 0 ? null : (
                           <p>{cartItems.reduce((a,c) => a + c.count, 0)}</p>)}   
-                
-                    </div>
-                    <button onClick={() => this.openModalCheckout({checkout})}><i className="shopping basket icon"></i></button>
                 </div>
-
+                
+                </div>
+            </div>
+                {/* <div className='item-number'>
+                        {cartItems.length === 0 ? null : (
+                          <p>{cartItems.reduce((a,c) => a + c.count, 0)}</p>)}   
+                </div> */}
+                               
                 {aboutUs && (
                     <Modal 
                         isOpen={true} 
@@ -98,14 +123,32 @@ export default class Nav extends Component {
                                     {formatCurrency(
                                         cartItems.reduce((a, c) => a + c.price * c.count, 0)
                                     )}
-                                    <button className='checkout'>Checkout</button>
+                                    <button className='checkout' onClick={() => {this.setState({showCheckout: true})}}>Checkout</button>
                                 </div>
                             </div>
                     </div>
-                    
-                    <div className='about-description-modal'>
                     </div>
-                    </div>
+                    {this.state.showCheckout && (
+                        <div className='checkout-info'>
+                            <form onSubmit={this.createOrder}>
+                                <ul className='form-container'>
+                                    <li>
+                                        <label>Name: </label>
+                                        <input type="name" required></input>
+                                    </li>
+                                    <li>
+                                        <label>Email: </label>
+                                        <input type="email" required onChange={this.handleInput}></input>
+                                    </li>
+                                    <li>
+                                        <label>Address: </label>
+                                        <input type="address" onChange={this.handleInput} required></input>
+                                    </li>
+                                </ul>
+                                <button onClick={this.createOrder}>Pay</button>
+                            </form>
+                        </div>
+                    )}
                 </Modal>
                 )}
                     
