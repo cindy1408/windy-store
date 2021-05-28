@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body,
+#root, 
+button
+ {
+  margin: 0;
+  font-family:'Varela Round', sans-serif;
+  color: green
+}
+
+a{
+  text-decoration: none;
+  color: #5c9c53
+}
+a:hover {
+  cursor: pointer;
+  color: gold;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: 'header' 'main' 'footer';
+  grid-template-rows: 1.5fr 6fr 1fr;
+  grid-template-columns: 1fr;
+  height: 100vh;
+}
+
+header {
+  grid-area: header;
+  background-color: #c7eec2 ;
+  text-align: center;
+  padding: 1rem;
+  font-size: 4rem;
+}
+
+header h1 {
+  margin: 1.5rem;
+  font-size: 4rem;
+}
+main {
+  grid-area: main;
+  background-color: rgb(233, 247, 233);
+  text-align: center;
+}
+
+.nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 2rem;
+  font-size: large;
+  margin: 0
+}
+
+footer {
+  grid-area: footer;
+  background-color: #c7eec2;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main, 
+.main-content {
+  flex: 3 60rem;
+}
+
+/* product main section */
+
+.products ul{
+  display: flex; 
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none; 
+  font-size: 1rem;
+}
+
+
+.products li {
+  flex: 0 1 29rem;
+  height: 42rem; 
+  padding: 1rem; 
+}
+
+.products p {
+  font-size: 1.5rem;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+.product img {
+  max-height: 25rem;
+  max-width: 25rem;
+}
+
+.product-price {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  padding: 1rem;
+  border: 0.1rem solid #a0c19c;
+  background-color: #c7eec2;
+  width: 40%;
+}
+button:hover {
+  background-color:gold ;
+  cursor: pointer;
+}
+
+/* Filter */
+
+.filter {
+  display: flex;
+  flex: wrap;
+  justify-content: space-around;
+  margin: 0.5rem;
+  align-items: center;
+  width: 100%
+}
+.filter-type select{
+  margin: 0.5rem;
+}
+
+/* Product Modal Section */
+
+.product-modal {
+  display: flex;
+  height: 75vh;
+}
+
+.product-model-description {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 1.5rem;
+}
+product-modal img{
+  max-height: 80%;
+}
+.materials-care p{
+  font-size: small;
+  line-height: 4%; 
+}
+.close-modal {
+  width: 0.75rem;
+  height: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  flex-flow: row-reverse wrap;
+}
+
+/* Nav - AboutUs Modal Section */
+
+.about-modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 75vh;
+}
+
+.title-modal {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:50%;
+  margin: 3rem;
+}
+
+.about-modal img, 
+.cart-items img {
+  max-height: 32rem;
+  max-width: 28rem; 
+}
+
+.about-description-modal{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 10%;
+  font-size: 1.25rem;
+}
+
+.cart-modal {
+  display: flex;
+  flex-direction: row;
+}

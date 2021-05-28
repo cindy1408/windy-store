@@ -1,0 +1,140 @@
+{
+    "products": [
+        {
+            "id": "mug1",
+            "title": "LiePardo Da Vinci",
+            "type":"gen-V",
+            "image": "./images/lipardoDaVinci.jpg",
+            "description": "LiePardo Da Vinci, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5
+        },  
+        {
+            "id": "mug2",
+            "title": "TyRoBoTar",
+            "type":"gen-II",
+            "image": "./images/tyRoBoTar.jpg",
+            "description": "TyRoBoTar, a cross parody between a robot, GodZilla and Tyranitar itself!",
+            "price": "13.95",
+            "stocks": 5 
+        },  
+        {
+            "id": "mug3",
+            "title": "LapAss",
+            "type":"gen-I",
+            "image": "./images/lapAss.jpg",
+            "description": "LapAss, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },  
+        {
+            "id": "mug4",
+            "title": "PikaPoop",
+            "type":"starter",
+            "image": "./images/pikaPoop.jpg",
+            "description": "PikaPoop, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },
+        {
+            "id": "mug5",
+            "title": "Umbrella",
+            "type":"gen-II",
+            "image": "./images/umbrella.jpg",
+            "description": "PikaPoop, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },
+        {
+            "id": "mug6",
+            "title": "Chowmeinder",
+            "type":"starter",
+            "image": "./images/chowmeinder.jpg",
+            "description": "PikaPoop, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },
+        {
+            "id": "mug7",
+            "title": "Boba-Saur",
+            "type":"starter",
+            "image": "./images/boba-saur.jpg",
+            "description": "LiePardo Da Vinci, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },
+        {
+            "id": "mug8",
+            "title": "DragonKnight",
+            "type":"gen-I",
+            "image": "./images/dragonKnight.jpg",
+            "description": "LiePardo Da Vinci, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },
+        {
+            "id": "mug9",
+            "title": "Dribble",
+            "type":"gen-IV",
+            "image": "./images/dribble.jpg",
+            "description": "LiePardo Da Vinci, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },
+        {
+            "id": "mug10",
+            "title": "Lavatar",
+            "type":"gen-II",
+            "image": "./images/lavatar.jpg",
+            "description": "LiePardo Da Vinci, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },
+        {
+            "id": "mug11",
+            "title": "Pie-Duck",
+            "type":"gen-IV",
+            "image": "./images/pieDuck.jpg",
+            "description": "LiePardo Da Vinci, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },
+        {
+            "id": "mug12",
+            "title": "Squir-Tall",
+            "type":"starter",
+            "image": "./images/squirtall.jpg",
+            "description": "LiePardo Da Vinci, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },
+        {
+            "id": "mug13",
+            "title": "Pose-lia",
+            "type":"gen-III",
+            "image": "./images/poselia.jpg",
+            "description": "LiePardo Da Vinci, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },
+        {
+            "id": "mug14",
+            "title": "More-Snacks",
+            "type":"gen-I",
+            "image": "./images/moresnacks.jpg",
+            "description": "LiePardo Da Vinci, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        },
+        {
+            "id": "mug15",
+            "title": "Hoot-Boot",
+            "type":"gen-II",
+            "image": "./images/hootboot.jpg",
+            "description": "LiePardo Da Vinci, a cross parody with LiePard and Leonardo Da Vinci, this mug will sure bring a laugh to your loved ones. ",
+            "price": "13.95",
+            "stocks": 5 
+        }
+
+    ]
+}
