@@ -51,7 +51,7 @@ export default class Nav extends Component {
                 <button >Review</button>
                 
             
-                <div className='checkout'>
+                <div className='checkout-button'>
                     <button onClick={() => this.openModalCheckout({checkout})}><i className="shopping basket icon"></i></button>
                     <div className='item-number'>
                         {cartItems.length === 0 ? null : (
@@ -69,12 +69,12 @@ export default class Nav extends Component {
                         <div className='button'>
                             <button className='close-modal' onClick={this.closeModalAbout}>x</button>
                         </div>
+                        
                         <div className='about-modal'>
-                    <div className='title-modal'>
-                        <h1>The Windy Store</h1>
-                        <img src='./images/aboutUs.jpg' alt='about-us'></img>
-                    </div>
-                    
+                            <div className='title-modal'>
+                                <h1>The Windy Store</h1>
+                                <img src='./images/aboutUs.jpg' alt='about-us'></img>
+                            </div>
                     <div className='about-description-modal'>
                         <h2>Who are we?</h2><br></br>
                         <p>The name <b>Windy</b> came from our names combined, Will and Cindy. <br/> Our store started in London, when Will was playing with Pokemon's name. <br/> The first was Pikachu to SmikaSmu, then it was Lapras to LapAss, Bagon or Bagel and so on. <br/> We started seriously thinking about different ways we could sell these silly names, especially when it came to Pika-Poop! </p>
@@ -95,7 +95,9 @@ export default class Nav extends Component {
                         </div>
                         <div className='checkout-modal'>
                             <div className='title-modal'>
-                            <h1>CHECKOUT</h1>
+                                <div className='title-section'>
+                                    <h1>CHECKOUT</h1>
+                                </div>
                             {cartItems.length === 0 ? 'Your cart is empty.' : (
                                 <p>You have : {cartItems.reduce((a, c) => a + c.count, 0)} items</p>
                             )}
@@ -103,52 +105,66 @@ export default class Nav extends Component {
                                 <ul className='cart-items'>
                                     {cartItems.map(item =>(
                                         <li key={item.id}>
-                                            <div>
-                                                <img src={item.image} alt={item.title}></img>
-                                                <p>{item.title}</p>
-                                            </div>
-                                            <div>
-                                                {formatCurrency(item.price)} x {item.count} {" "}
-                                                <button onClick={() => this.props.removeFromCart(item)}>Remove</button>
+                                            <div className='each-product-section'>
+                                                <div className='checkout-img'>
+                                                    <img src={item.image} alt={item.title}></img>
+                                                </div>
+                                                
+                                                <div className='cart-info'>
+                                                    <div className='title'>
+                                                        <p>{item.title}</p>
+                                                    </div>
+                                                    <div className='price'>
+                                                        {formatCurrency(item.price)} x {item.count} {" "}
+                                                    </div>
+                                                    <div className='button'>
+                                                        <button onClick={() => this.props.removeFromCart(item)}>Remove</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </li>
                                     ))}
                                 </ul>
                                 <div className='checkout'>
-                                    Total: {" "}
-                                    {formatCurrency(
-                                        cartItems.reduce((a, c) => a + c.price * c.count, 0)
-                                    )}
-                                    <button className='checkout' onClick={() => {this.setState({showCheckout: true})}}>Checkout</button>
+                                    <div className='total-price'>
+                                        Total: {" "}
+                                        {formatCurrency(
+                                            cartItems.reduce((a, c) => a + c.price * c.count, 0)
+                                        )}
+                                        </div>
+                                    
+                                    <div>
+                                        <button className='checkout-button' onClick={() => {this.setState({showCheckout: true})}}>Checkout</button>
+                                    </div>
+                                    <div className='checkout-info'>
+                                    {this.state.showCheckout && (
+                                            <form onSubmit={this.createOrder}>
+                                                <ul className='form-container'>
+                                                    <li>
+                                                        <label>Name: </label>
+                                                        <input type="name" required></input>
+                                                    </li>
+                                                    <li>
+                                                        <label>Email: </label>
+                                                        <input type="email" required onChange={this.handleInput}></input>
+                                                    </li>
+                                                    <li>
+                                                        <label>Address: </label>
+                                                        <input type="address" onChange={this.handleInput} required></input>
+                                                    </li>
+                                                    <button onClick={this.createOrder}>Pay</button>
+                                                </ul>
+                                                
+                                            </form>
+                    )}
+                                    </div>
                                 </div>
                             </div>
                     </div>
                     </div>
-                    {this.state.showCheckout && (
-                        <div className='checkout-info'>
-                            <form onSubmit={this.createOrder}>
-                                <ul className='form-container'>
-                                    <li>
-                                        <label>Name: </label>
-                                        <input type="name" required></input>
-                                    </li>
-                                    <li>
-                                        <label>Email: </label>
-                                        <input type="email" required onChange={this.handleInput}></input>
-                                    </li>
-                                    <li>
-                                        <label>Address: </label>
-                                        <input type="address" onChange={this.handleInput} required></input>
-                                    </li>
-                                </ul>
-                                <button onClick={this.createOrder}>Pay</button>
-                            </form>
-                        </div>
-                    )}
-                </Modal>
-                )}
                     
-                
+                </Modal>
+                )}              
             </div>
         )
     }

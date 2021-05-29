@@ -48,13 +48,13 @@ main {
   align-items: center;
   padding: 2rem;
   font-size: large;
-  margin: 0
+  margin: 0;
 }
 .nav button {
   border: none;
   width: 10rem;
 }
-.checkout{
+.checkout-button{
   position: relative;
 }
 
@@ -66,8 +66,8 @@ main {
   width: 1.5rem;
   height: 1.5rem;
   position: absolute;
-  top: 15%;
-  right: 30%;
+  top: 5%;
+  right:30%
 }
 
 footer {
@@ -89,6 +89,8 @@ footer {
 .main, 
 .main-content {
   flex: 3 60rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* product main section */
@@ -98,8 +100,8 @@ footer {
   flex-wrap: wrap;
   padding: 0;
   margin: 0;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   list-style-type: none; 
   font-size: 1rem;
 }
@@ -202,14 +204,13 @@ product-modal img{
 .title-modal {
   display:flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width:50%;
-  margin: 3rem;
+  width:95%;
+  margin: 2rem;
 }
 
-.about-modal img, 
-.cart-items img {
+.about-modal img {
   max-height: 32rem;
   max-width: 28rem; 
 }
@@ -222,7 +223,108 @@ product-modal img{
   font-size: 1.25rem;
 }
 
+/* Cart- Cart Modal Section */
+.title-section{
+  border-bottom: solid #a0c19c;
+  width: 100%;
+  padding: 0.25rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-modal{
+  width: 100%;
+  flex: 3 60rem;
+}
+
 .cart-modal {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  justify-content: left;
+  padding: 1rem;
+}
+
+.cart-modal ul, 
+.cart-items {
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  width:fit-content;
+  padding: 0;
+}
+
+.cart-items img {
+  max-height: 28rem;
+  max-width: 25rem; 
+}
+
+.cart-items ul{
+  width:50%;
+}
+
+.each-product-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.title, 
+.price {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  width: fit-content;
+}
+
+.cart-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width:fit-content;
+}
+.cart-info button, 
+.checkout button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6rem;
+  height: 2.5rem;
+  margin: 1rem;
+  text-align: center;
+}
+
+.checkout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  margin-top: 10%;
+  padding-left: 10%;
+}
+.checkout-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.total-price{
+  font-size: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  align-items: center;
+}
+
+form li,
+form label {
+  margin: 0.5rem;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
 }
