@@ -2,14 +2,20 @@ import React, { Component } from 'react'
 import formatCurrency from '../util';
 //model needs a state to show model or hide model (hence require a constructor)
 import Modal from 'react-modal';
+import {connect} from 'react-redux';
+import {fetchProducts} from '../actions/productActions';
 
-export default class Products extends Component {
+class Products extends Component {
     constructor (props){
         super(props);
         this.state = {
             product: null
         }
     }
+    componentDidMount() {
+        this.props.fetchProducts();
+    }
+
     openModal = (product) => {
         this.setState({product});
     }
@@ -20,7 +26,10 @@ export default class Products extends Component {
         const {product} = this.state;
         return (
             <div className='products'>
-                <ul className='products-lists'>
+                {
+                    !this.props.products ? <div>Loading...</div>: 
+                (
+                    <ul className='products-lists'>
                     {this.props.products.map(product => (
                         <li key={product.id}>
                             <div className='product'>
@@ -35,6 +44,8 @@ export default class Products extends Component {
                             </div>
                         </li>
                     ))}</ul>
+                )}
+                
                     {
                         product && (
                             <Modal isOpen={true} 
@@ -65,3 +76,5 @@ export default class Products extends Component {
         )
     }
 }
+
+export default connect((state) => ({products: state.products.items}), {fetchProducts})(Products)
