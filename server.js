@@ -8,9 +8,8 @@ const app = express();
 
 app.use(express.json());
 
-// const port = process.env.PORT || 9696; 
+const port = process.env.PORT || 9696; 
 
-const port = 9696;
 
 
 app.listen(port, () => console.log(`serve at http://localhost:${port}`));
@@ -19,7 +18,7 @@ app.listen(port, () => console.log(`serve at http://localhost:${port}`));
  app.use(express.urlencoded({ extended: true}))
 
 
- mongoose.connect("mongodb://localhost/windy-store-db", {
+ mongoose.connect("mongodb+srv://Windy:8Lhe9YTTCnZBzI2K@cluster0.kprsc.mongodb.net/test?retryWrites=true&w=majority", {
      useNewUrlParser: true,
      useCreateIndex: true, 
      useUnifiedTopology: true,
