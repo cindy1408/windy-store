@@ -3,6 +3,8 @@ import Products from './components/Products';
 import Filter from './components/Filter';
 import data from './data.json';
 import Nav from './components/Nav';
+import store from './store'
+import { Provider } from 'react-redux';
 
 class App extends React.Component {
   constructor(props){
@@ -62,6 +64,7 @@ class App extends React.Component {
 
   render () {
     return (
+      <Provider store={ store }>
       <div className='grid-container'>
         <header>
           <h1>The Windy Store</h1>
@@ -87,6 +90,7 @@ class App extends React.Component {
         </main>
         <footer>All right is reserved</footer>
       </div>
+      </Provider>
     );
   }
 };
