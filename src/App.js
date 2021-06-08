@@ -14,7 +14,6 @@ class App extends React.Component {
       cartItems: localStorage.getItem("cartItems") ?JSON.parse(localStorage.getItem("cartItems")) : [] ,
       type:""
     }
-    this.filterProducts = this.filterProducts.bind(this)
   }
 
   addToCart = (product) => {
@@ -43,20 +42,6 @@ class App extends React.Component {
           JSON.stringify(cartItems.filter( x => x.id !== item.id )));
   }
 
-  filterProducts (event) {
-    if(event.target.value === ""){
-      this.setState({
-      type: event.target.value,
-      products: data.products
-      })
-    } else {
-        this.setState({
-        type: event.target.value,
-        products: data.products.filter(product => product.type === event.target.value)
-      })
-
-    }
-  }
 
   createOrder = (order) => {
     alert("Need to save order for: " + order.name)
@@ -76,15 +61,10 @@ class App extends React.Component {
         </header>
         <main>
           <div className='content'>
-            <Filter 
-              count={this.state.products.length} 
-              type={this.state.type}
-              filterProducts={this.filterProducts}
-              />
+            <Filter />
             <div className='main-content'>
               
-              <Products products={this.state.products}
-                        addToCart={this.addToCart} />
+              <Products addToCart={this.addToCart} />
             </div>
           </div>
         </main>
