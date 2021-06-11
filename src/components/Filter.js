@@ -4,16 +4,19 @@ import { filterProducts }  from '../actions/productActions'
 
 class Filter extends Component {
     render() {
-        console.log(this.props.filterProducts.length)
-        return ( !this.props.filterProducts ? <div>Loading...</div>: 
-                (
+        return  !this.props.filteredProducts ? (<div>Loading...</div>)
+        : (
                 <div className='filter'>
-                <div className = 'filter-results'>
-                    Total items: {this.props.filterProducts.length}
+                <div className = 'filter-results'
+                    onChange={(e) => 
+                        this.props.filterProducts(this.props.products, e.target.value)
+                    }>
+                    Total items: {this.props.filteredProducts.length}
+
                 </div>
                 <div className = 'filter-type'>
                     Filter By:
-                    <select value={this.props.type} 
+                    <select value={this.filteredProducts} 
                         onChange={(e) => 
                             this.props.filterProducts(this.props.products, e.target.value)
                         } >
@@ -31,7 +34,7 @@ class Filter extends Component {
                 </div>
             </div>
             )
-        )
+        
     }
 }
 
@@ -40,10 +43,11 @@ export default connect(
     (state) => ({
         type: state.products.type,
         products: state.products.items,
-        filterProducts: state.products.filteredItems
+        filteredProducts: state.products.filteredItems,
     }), 
+    //mapping actions 
     {
         filterProducts,
     }
-    )(Filter)
+    )(Filter);
  
