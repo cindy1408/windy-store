@@ -1,7 +1,6 @@
 import React from 'react';
 import Products from './components/Products';
 import Filter from './components/Filter';
-import data from './data.json';
 import Nav from './components/Nav';
 import store from './store'
 import { Provider } from 'react-redux';
@@ -10,9 +9,10 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      products: data.products,
-      cartItems: localStorage.getItem("cartItems") ?JSON.parse(localStorage.getItem("cartItems")) : [] ,
-      type:""
+      cartItems: localStorage.getItem("cartItems") 
+      ?JSON.parse(localStorage.getItem("cartItems")) 
+      : [],
+      filterProducts: []
     }
   }
 
@@ -48,6 +48,7 @@ class App extends React.Component {
   };
 
   render () {
+    console.log()
     return (
       <Provider store={ store }>
       <div className='grid-container'>
@@ -61,10 +62,11 @@ class App extends React.Component {
         </header>
         <main>
           <div className='content'>
-            <Filter />
+            <Filter count={this.state.filterProducts.length} />
             <div className='main-content'>
               
-              <Products addToCart={this.addToCart} />
+              <Products addToCart={this.addToCart}
+                        />
             </div>
           </div>
         </main>
