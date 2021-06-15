@@ -47,6 +47,10 @@ class App extends React.Component {
     alert("Need to save order for: " + order.name)
   };
 
+  handleToken (token, addresses, amount) {
+    console.log({token, addresses, amount})
+}
+
   render () {
     console.log()
     return (
@@ -58,7 +62,8 @@ class App extends React.Component {
             cartItems={this.state.cartItems} 
             addToCart={this.addToCart}
             removeFromCart={this.removeFromCart}
-            createOrder={this.createOrder} />
+            createOrder={this.createOrder}
+            handleToken={this.handleToken} />
         </header>
         <main>
           <div className='content'>

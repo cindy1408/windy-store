@@ -24,8 +24,7 @@ export const filterProducts = (products, type) => (dispatch) => {
             items: 
                 type === "" 
                     ? products 
-                    : products.filter(x=> x.type[0] === type) //products.filter(x=> x.type.indexOf(type) === type)
+                    : products.filter(x=> x.type[0] === type)
         }
     })
-    return 
 }
