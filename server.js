@@ -2,7 +2,7 @@ const express = require("express");
 // const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const shortid = require("shortid");
-const stripe = require(stripe)('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')
+const stripe = require(stripe)('')
 
 const app = express();
 
