@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import Modal from 'react-modal'; 
 import formatCurrency from '../util';
+import StripeCheckout from 'react-stripe-checkout';
+import { ItemDescription } from 'semantic-ui-react';
 
 export default class Nav extends Component {
     constructor(props){
@@ -44,6 +46,7 @@ export default class Nav extends Component {
     render() {
         const {aboutUs, checkout} = this.state;
         const {cartItems} = this.props;
+        let {totalPrice} = cartItems.reduce((a, c) => a + c.count, 0)
         return (
             <div>
             <div className='nav'>
@@ -135,6 +138,13 @@ export default class Nav extends Component {
                                     
                                     <div>
                                         <button className='checkout-button' onClick={() => {this.setState({showCheckout: true})}}>Checkout</button>
+                                        <StripeCheckout 
+                                            stripeKey= "pk_test_51IzITeCp2VW1Fwcl5ecwGR5verXvz5LgYQGEj7neoGjvxH53VM35Oo9JD10KqDuroVY6jGWQ6zv2AKSNnQXgmJGd00NakSkEQ6"
+                                            token = {this.props.handleToken}
+                                            billingAddress
+                                            shippingAddress
+                                            amount={cartItems.reduce((a, c) => a + c.price * c.count, 0)*100}
+                                            name={cartItems.title} />
                                     </div>
                                     <div className='checkout-info'>
                                     {this.state.showCheckout && (
