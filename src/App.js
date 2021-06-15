@@ -4,6 +4,10 @@ import Filter from './components/Filter';
 import Nav from './components/Nav';
 import store from './store'
 import { Provider } from 'react-redux';
+import axios from 'axios';
+import { toast }from 'react-toastify';
+
+toast.configure(); 
 
 class App extends React.Component {
   constructor(props){
@@ -47,8 +51,18 @@ class App extends React.Component {
     alert("Need to save order for: " + order.name)
   };
 
-  handleToken (token, addresses, amount) {
-    console.log({token, addresses, amount})
+  async handleToken (token) {
+    const response = await axios.post('mongodb+srv://Windy:8Lhe9YTTCnZBzI2K@cluster0.kprsc.mongodb.net/test?retryWrites=true&w=majority/checkout', {
+      token,
+      Products
+    });
+    const {status} = response.data
+    if (status === "success") {
+      toast('Success! Check email for details', {type: "success"})
+    } else {
+      toast('Something went wrong', {type: "error"})
+    }
+    console.log({token})
 }
 
   render () {
