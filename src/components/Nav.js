@@ -3,33 +3,51 @@ import 'semantic-ui-css/semantic.min.css';
 import Modal from 'react-modal'; 
 import formatCurrency from '../util';
 import StripeCheckout from 'react-stripe-checkout';
-
-
+import { loginAction } from '../actions/loginActions';
 export default class Nav extends Component {
     constructor(props){
         super(props);
         this.state = {
             aboutUs: null,
             checkout: null,
+            login: null, 
+            registration: null, 
             showCheckout: false,
-            name: "", 
+            firstName: "", 
+            lastName: "",
+            telephone: "",
             email: "",
             address: "",
+            address2: "",
+            address3: "",
+            submitted: false,
         }
     }
     openModalAbout = () => {
         this.setState({aboutUs: true})
     }
+    openModalLogin = () => {
+        this.setState({login: true})
+    }
     openModalCheckout = () => {
         this.setState({checkout: true})
     }
-    
+    openModalRegistration = () => {
+        this.setState({registration: true})
+    }    
     closeModalAbout = () => {
         this.setState({aboutUs: false});
+    }
+
+    closeModalLogin = () => {
+        this.setState({login: false})
     }
     closeModalCheckout = () => {
         this.setState({checkout: false});
     }
+    closeModalRegistration = () => {
+        this.setState({registration: false})
+    }  
     handleInput = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
@@ -43,14 +61,25 @@ export default class Nav extends Component {
         }
         this.props.createOrder(order);
     }
+
+    closeModal = () => {
+        this.props.clearOrder();
+    }
+
+    submitForm = async (event) => {
+        this.setState({submitted: true});
+        this.props.dispatch(loginAction.formSubmissionStatus(true));
+        const user = this.state.user;
+    }
+
     render() {
-        const {aboutUs, checkout} = this.state;
+        const {aboutUs, checkout, login, registration} = this.state;
         const {cartItems} = this.props;
         return (
             <div>
             <div className='nav'>
                 <button onClick={() => this.openModalAbout({aboutUs})}>About Us</button> 
-                <button >Review</button>
+                <button onClick={() => this.openModalLogin({login})}>Login</button>
                 
             
                 <div className='checkout-button'>
@@ -85,7 +114,36 @@ export default class Nav extends Component {
                 </Modal>
                 )}
 
+                {login && (
+                    <Modal
+                        isOpen={true}
+                        onRequestClose={this.closeModalLogin}
+                        ariaHideApp={false}>
+                            <div className='button'>
+                                <button className='close-modal' onClick={this.closeModalLogin}>x</button>
+                            </div>
+                
+                            <div className='login-modal'>
+                                
+                            <form> 
+                                <h3>Have an account with us?</h3>
+                                <div className='field'>
+                                    <label>Email</label>
+                                    <input></input>
+                                </div>
+                                <div className='field'>
+                                    <label>Password</label>
+                                    <input></input>
+                                </div>
+                                <button className='login-btn'>Login</button>
 
+                            </form>
+                            <a className='register' onClick={this.openModalRegistration}><h5>Don't have an accout? click here to register!</h5></a>
+                            </div>
+                            
+
+                    </Modal>
+                )}
                 
                 {checkout && (
                     <Modal 
@@ -173,7 +231,30 @@ export default class Nav extends Component {
                     </div>
                     
                 </Modal>
-                )}              
+                )}     
+
+                {registration && (
+                    <Modal
+                        isOpen={true} 
+                        onRequestClose={this.closeModalRegistration} 
+                        ariaHideApp={false}>
+                            <div className='button'>
+                            <button className='close-modal' onClick={this.closeModalRegistration}>x</button>
+                        </div>
+                         <form>
+                             <h3>Register with us!</h3>
+                             <label>Name: </label>
+                             <input></input>
+                             <label>Email: </label>
+                             <input></input>
+                             <label>Password: </label>
+                             <input></input>
+                             <label>re-enter Password: </label>
+                             <input></input>
+                             <button onClick={login}>Submit</button>
+                         </form>
+                    </Modal>
+                )}         
             </div>
         )
     }

@@ -51,8 +51,9 @@ class App extends React.Component {
     alert("Need to save order for: " + order.name)
   };
 
+  //mongodb+srv://Windy:8Lhe9YTTCnZBzI2K@cluster0.kprsc.mongodb.net/test?retryWrites=true&w=majority/checkout
   async handleToken (token) {
-    const response = await axios.post('mongodb+srv://Windy:8Lhe9YTTCnZBzI2K@cluster0.kprsc.mongodb.net/test?retryWrites=true&w=majority/checkout', {
+    const response = await axios.post('/checkout', {
       token,
       Products
     });
@@ -69,28 +70,28 @@ class App extends React.Component {
     console.log()
     return (
       <Provider store={ store }>
-      <div className='grid-container'>
-        <header>
-          <h1>The Windy Store</h1>
-          <Nav 
-            cartItems={this.state.cartItems} 
-            addToCart={this.addToCart}
-            removeFromCart={this.removeFromCart}
-            createOrder={this.createOrder}
-            handleToken={this.handleToken} />
-        </header>
-        <main>
-          <div className='content'>
-            <Filter count={this.state.filterProducts.length} />
-            <div className='main-content'>
-              
-              <Products addToCart={this.addToCart}
-                        />
+        <div className='grid-container'>
+          <header>
+            <h1>The Windy Store</h1>
+            <Nav 
+              cartItems={this.state.cartItems} 
+              addToCart={this.addToCart}
+              removeFromCart={this.removeFromCart}
+              createOrder={this.createOrder}
+              handleToken={this.handleToken} />
+          </header>
+          <main>
+            <div className='content'>
+              <Filter count={this.state.filterProducts.length} />
+              <div className='main-content'>
+                
+                <Products addToCart={this.addToCart}
+                          />
+              </div>
             </div>
-          </div>
-        </main>
-        <footer>All right is reserved</footer>
-      </div>
+          </main>
+          <footer>All right is reserved</footer>
+        </div>
       </Provider>
     );
   }
