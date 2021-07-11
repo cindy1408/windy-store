@@ -315,10 +315,27 @@ product-modal img{
 }
 
 form {
+  height: 65vh;
   display: flex;
   flex-direction: column;
-  justify-content:space-between;
+  justify-content:center;
   align-items: center;
+}
+
+form h3 {
+  padding-bottom: 3rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+.register{
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
 
 form li,
@@ -327,4 +344,12 @@ form label {
   font-size: 1.25rem;
   display: flex;
   align-items: center;
+}
+
+.login-btn{
+  width: 5rem;
+  display: flex;
+  padding: 1rem;
+  text-align: center;
+  margin: 1.5rem;
 }
