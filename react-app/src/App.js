@@ -1,18 +1,23 @@
 import React from 'react';
 import Products from './components/Products';
 import Filter from './components/Filter';
-import data from './data.json';
 import Nav from './components/Nav';
+import store from './store'
+import { Provider } from 'react-redux';
+import axios from 'axios';
+import { toast }from 'react-toastify';
+
+toast.configure(); 
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      products: data.products,
-      cartItems: localStorage.getItem("cartItems") ?JSON.parse(localStorage.getItem("cartItems")) : [] ,
-      type:""
+      cartItems: localStorage.getItem("cartItems") 
+      ?JSON.parse(localStorage.getItem("cartItems")) 
+      : [],
+      filterProducts: []
     }
-    this.filterProducts = this.filterProducts.bind(this)
   }
 
   addToCart = (product) => {
@@ -41,27 +46,29 @@ class App extends React.Component {
           JSON.stringify(cartItems.filter( x => x.id !== item.id )));
   }
 
-  filterProducts (event) {
-    if(event.target.value === ""){
-      this.setState({
-      type: event.target.value,
-      products: data.products
-      })
-    } else {
-        this.setState({
-        type: event.target.value,
-        products: data.products.filter(product => product.type === event.target.value)
-      })
-
-    }
-  }
 
   createOrder = (order) => {
     alert("Need to save order for: " + order.name)
   };
 
+  async handleToken (token) {
+    const response = await axios.post('mongodb+srv://Windy:8Lhe9YTTCnZBzI2K@cluster0.kprsc.mongodb.net/test?retryWrites=true&w=majority/checkout', {
+      token,
+      Products
+    });
+    const {status} = response.data
+    if (status === "success") {
+      toast('Success! Check email for details', {type: "success"})
+    } else {
+      toast('Something went wrong', {type: "error"})
+    }
+    console.log({token})
+}
+
   render () {
+    console.log()
     return (
+      <Provider store={ store }>
       <div className='grid-container'>
         <header>
           <h1>The Windy Store</h1>
@@ -69,24 +76,22 @@ class App extends React.Component {
             cartItems={this.state.cartItems} 
             addToCart={this.addToCart}
             removeFromCart={this.removeFromCart}
-            createOrder={this.createOrder} />
+            createOrder={this.createOrder}
+            handleToken={this.handleToken} />
         </header>
         <main>
           <div className='content'>
-            <Filter 
-              count={this.state.products.length} 
-              type={this.state.type}
-              filterProducts={this.filterProducts}
-              />
+            <Filter count={this.state.filterProducts.length} />
             <div className='main-content'>
               
-              <Products products={this.state.products}
-                        addToCart={this.addToCart} />
+              <Products addToCart={this.addToCart}
+                        />
             </div>
           </div>
         </main>
         <footer>All right is reserved</footer>
       </div>
+      </Provider>
     );
   }
 };
