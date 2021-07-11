@@ -51,14 +51,10 @@ class App extends React.Component {
     alert("Need to save order for: " + order.name)
   };
 
-<<<<<<< HEAD:react-app/src/App.js
-  async handleToken (token) {
-    const response = await axios.post('mongodb+srv://Windy:8Lhe9YTTCnZBzI2K@cluster0.kprsc.mongodb.net/test?retryWrites=true&w=majority/checkout', {
-=======
+
   //mongodb+srv://Windy:8Lhe9YTTCnZBzI2K@cluster0.kprsc.mongodb.net/test?retryWrites=true&w=majority/checkout
   async handleToken (token) {
     const response = await axios.post('/checkout', {
->>>>>>> 074f5dba3c7729f26ec51ac5ade9c5dbea06516d:src/App.js
       token,
       Products
     });
@@ -75,7 +71,6 @@ class App extends React.Component {
     console.log()
     return (
       <Provider store={ store }>
-<<<<<<< HEAD:react-app/src/App.js
       <div className='grid-container'>
         <header>
           <h1>The Windy Store</h1>
@@ -98,7 +93,7 @@ class App extends React.Component {
         </main>
         <footer>All right is reserved</footer>
       </div>
-=======
+
         <div className='grid-container'>
           <header>
             <h1>The Windy Store</h1>
@@ -121,7 +116,7 @@ class App extends React.Component {
           </main>
           <footer>All right is reserved</footer>
         </div>
->>>>>>> 074f5dba3c7729f26ec51ac5ade9c5dbea06516d:src/App.js
+
       </Provider>
     );
   }

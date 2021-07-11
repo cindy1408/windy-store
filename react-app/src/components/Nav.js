@@ -3,12 +3,7 @@ import 'semantic-ui-css/semantic.min.css';
 import Modal from 'react-modal'; 
 import formatCurrency from '../util';
 import StripeCheckout from 'react-stripe-checkout';
-<<<<<<< HEAD:react-app/src/components/Nav.js
-
-
-=======
 import { loginAction } from '../actions/loginActions';
->>>>>>> 074f5dba3c7729f26ec51ac5ade9c5dbea06516d:src/components/Nav.js
 export default class Nav extends Component {
     constructor(props){
         super(props);
