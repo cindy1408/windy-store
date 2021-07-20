@@ -23,6 +23,17 @@ app.listen(port, () => console.log(`serve at http://localhost:${port}`));
      useUnifiedTopology: true,
  });
 
+ const Users = mongoose.model(
+     "users",
+     new mongoose.Schema({
+         id: { type: String, default: shortid.generate },
+         name: String, 
+         email: String,
+         password: String
+     })
+ )
+
+
  const Product = mongoose.model(
      "products", 
      new mongoose.Schema({
@@ -45,9 +56,14 @@ app.get("/api/products", async (req, res) => {
  res.send(products);
  });
 
+ //get user within the database 
+ app.get("/api/users", async(req, res) => {
+     const users = await Users.find({});
+     res.send(users)
+ })
 
  app.get('/secret', async (req, res) => {
-    const intent = fetch // ... Fetch or create the PaymentIntent
+    // const intent = fetch 
     res.json({client_secret: intent.client_secret});
   });
 
@@ -58,6 +74,13 @@ app.get("/api/products", async (req, res) => {
      res.send(savedProduct);
  });
 
+ //saving a user in the database
+
+ app.post("/api/users", async(req, res) => {
+     const newUser = new Product(req.body);
+     const savedUser = await newUser.save();
+     res.send(savedUser);
+ })
 
  app.post("/checkout", async(req, res) => {
      console.log("request", res.body);

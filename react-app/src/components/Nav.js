@@ -3,50 +3,80 @@ import 'semantic-ui-css/semantic.min.css';
 import Modal from 'react-modal'; 
 import formatCurrency from '../util';
 import StripeCheckout from 'react-stripe-checkout';
-<<<<<<< HEAD:react-app/src/components/Nav.js
+import loginAction from '../actions/loginActions';
 
-
-=======
-import { loginAction } from '../actions/loginActions';
->>>>>>> 074f5dba3c7729f26ec51ac5ade9c5dbea06516d:src/components/Nav.js
 export default class Nav extends Component {
     constructor(props){
         super(props);
         this.state = {
             aboutUs: null,
             checkout: null,
-            login: null, 
-            registration: null, 
+            account: false,
+            login: false,  
+            registration: false, 
             showCheckout: false,
-            firstName: "", 
-            lastName: "",
-            telephone: "",
+            name: "Cindy", 
             email: "",
+            password: "",
+            confirmPassword: "",
             address: "",
             address2: "",
             address3: "",
-            submitted: false,
+            isValid: false,
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange = e => {
+        this.setState({[e.target.name]: e.target.value})
+    };
+
+    handleSubmit = e => {
+        e.preventDefault();
+        if(this.state.password !== this.state.confirmPassword){
+            this.setState({isValid: false})
+            console.log("Password must match!")
+        } else {
+        const data = this.state; 
+        this.setState({isValid: true})
+        console.log(data)
         }
     }
-    openModalAbout = () => {
-        this.setState({aboutUs: true})
+
+    /* Modal for either login OR sign up page */
+    openModalAccount = () => {
+        this.setState({account: true})
     }
+
+    closeModalAccount = () => {
+        this.setState({account: false})
+    }
+    /* Modal for Login page */
     openModalLogin = () => {
         this.setState({login: true})
     }
+
+    closeModalLogin = () => {
+        this.setState({login: false})
+    }
+
+    /* Modal for about page */
+    openModalAbout = () => {
+        this.setState({aboutUs: true})
+    }
+    closeModalAbout = () => {
+        this.setState({aboutUs: false});
+    }
+
     openModalCheckout = () => {
         this.setState({checkout: true})
     }
     openModalRegistration = () => {
         this.setState({registration: true})
     }    
-    closeModalAbout = () => {
-        this.setState({aboutUs: false});
-    }
+    
 
-    closeModalLogin = () => {
-        this.setState({login: false})
-    }
     closeModalCheckout = () => {
         this.setState({checkout: false});
     }
@@ -56,6 +86,17 @@ export default class Nav extends Component {
     handleInput = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
+
+    createUser = (e) => {
+        e.preventDefault();
+        const user = {
+            name: this.state.name,
+            email: this.state.email, 
+            password: this.state.password
+        }
+        this.props.createUser(user);
+    }
+
     createOrder = (e) => {
         e.preventDefault();
         const order = {
@@ -74,17 +115,16 @@ export default class Nav extends Component {
     submitForm = async (event) => {
         this.setState({submitted: true});
         this.props.dispatch(loginAction.formSubmissionStatus(true));
-        const user = this.state.user;
     }
 
     render() {
-        const {aboutUs, checkout, login, registration} = this.state;
+        const { aboutUs, checkout, login, registration, account} = this.state;
         const {cartItems} = this.props;
         return (
             <div>
-            <div className='nav'>
+                <div className='nav'>
                 <button onClick={() => this.openModalAbout({aboutUs})}>About Us</button> 
-                <button onClick={() => this.openModalLogin({login})}>Login</button>
+                <button onClick={() => this.openModalAccount({account})}>Login</button>
                 
             
                 <div className='checkout-button'>
@@ -96,6 +136,8 @@ export default class Nav extends Component {
                 
                 </div>
             </div>
+    
+            
                                
                 {aboutUs && (
                     <Modal 
@@ -119,37 +161,58 @@ export default class Nav extends Component {
                 </Modal>
                 )}
 
-                {login && (
+                {account && (
                     <Modal
                         isOpen={true}
-                        onRequestClose={this.closeModalLogin}
+                        onRequestClose={this.closeModalAccount}
                         ariaHideApp={false}>
-                            <div className='button'>
-                                <button className='close-modal' onClick={this.closeModalLogin}>x</button>
-                            </div>
-                
-                            <div className='login-modal'>
-                                
-                            <form> 
-                                <h3>Have an account with us?</h3>
-                                <div className='field'>
-                                    <label>Email</label>
-                                    <input></input>
-                                </div>
-                                <div className='field'>
-                                    <label>Password</label>
-                                    <input></input>
-                                </div>
-                                <button className='login-btn'>Login</button>
+                            <button className='close-modal' onClick={this.closeModalAccount}>x</button>
+                            <button onClick={() => this.openModalRegistration({registration})}>Sign up</button>
+                            <p>already have an account?</p>
+                            <button onClick={() => this.openModalLogin({login})}>Sign in</button>
 
-                            </form>
-                            <a className='register' onClick={this.openModalRegistration}><h5>Don't have an accout? click here to register!</h5></a>
-                            </div>
-                            
+                    </Modal>
+                )}
+
+                {login && (
+                    <Modal
+                        isOpen={true} 
+                        onRequestClose={this.closeModalLogin} 
+                        ariaHideApp={false}>
+                            <button className='close-modal' onClick={this.closeModalLogin}>x</button>
+                            <label>Email Address: </label>
+                            <input />
+                            <label>Password: </label>
+                            <input type='password'/>
+                            <button>Login</button>
+
 
                     </Modal>
                 )}
                 
+                {registration && (
+                    <Modal
+                        isOpen={true} 
+                        onRequestClose={this.closeModalRegistration} 
+                        ariaHideApp={false}>
+                            <div className='button'>
+                            <button className='close-modal' onClick={this.closeModalRegistration}>x</button>
+                        </div>
+                         <form>
+                             <h3>Register with us!</h3>
+                             <label>Name: </label>
+                             <input onChange={this.handleChange} name='name' value={this.state.name}></input>
+                             <label>Email: </label>
+                             <input onChange={this.handleChange} name='email' value={this.state.email}></input>
+                             <label>Password: </label>
+                             <input onChange={this.handleChange} name='password'value={this.state.password}></input>
+                             <label>re-enter Password: </label>
+                             <input onChange={this.handleChange} name='confirmPassword' value={this.state.confirmPassword}></input>
+                             <button onClick={this.createUser}>Submit</button>
+                         </form>
+                    </Modal>
+                )}         
+
                 {checkout && (
                     <Modal 
                         isOpen={true} 
@@ -238,28 +301,7 @@ export default class Nav extends Component {
                 </Modal>
                 )}     
 
-                {registration && (
-                    <Modal
-                        isOpen={true} 
-                        onRequestClose={this.closeModalRegistration} 
-                        ariaHideApp={false}>
-                            <div className='button'>
-                            <button className='close-modal' onClick={this.closeModalRegistration}>x</button>
-                        </div>
-                         <form>
-                             <h3>Register with us!</h3>
-                             <label>Name: </label>
-                             <input></input>
-                             <label>Email: </label>
-                             <input></input>
-                             <label>Password: </label>
-                             <input></input>
-                             <label>re-enter Password: </label>
-                             <input></input>
-                             <button onClick={login}>Submit</button>
-                         </form>
-                    </Modal>
-                )}         
+                
             </div>
         )
     }
