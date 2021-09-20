@@ -53,6 +53,11 @@ class App extends React.Component {
 
   createUser = (user) => {
     alert("Your account has been created!")
+    const addUser = axios.post('http://localhost:5000/api/users', {
+      user}, 
+      {headers: {'Content-Type': 'application/json'}}
+    )
+    console.log(addUser);
   }
 
   async handleToken (token) {
