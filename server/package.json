@@ -7,6 +7,7 @@
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "core-js": "^3.12.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.12.12",
     "nodemon": "^2.0.7",
@@ -17,5 +18,8 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.12"
+  }
 }
