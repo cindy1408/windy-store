@@ -16,12 +16,19 @@ app.listen(port, () => console.log(`serve at http://localhost:${port}`));
 
  app.use(express.urlencoded({ extended: true}))
 
+const uri = "mongodb://Windy:8Lhe9YTTCnZBzI2K@main-shard-00-00-03xkr.mongodb.net:27017,main-shard-00-01-03xkr.mongodb.net:27017,main-shard-00-02-03xkr.mongodb.net:27017/main?ssl=true&replicaSet=Main-shard-0&authSource=admin&retryWrites=true"
 
- mongoose.connect("mongodb+srv://Windy:8Lhe9YTTCnZBzI2K@cluster0.kprsc.mongodb.net/test?retryWrites=true&w=majority", {
-     useNewUrlParser: true,
-     useCreateIndex: true, 
-     useUnifiedTopology: true,
- });
+ // mongoose.connect("mongodb+srv://Windy:8Lhe9YTTCnZBzI2K@cluster0.kprsc.mongodb.net/test?retryWrites=true&w=majority", {
+ //     useNewUrlParser: true,
+ //     useCreateIndex: true,
+ //     useUnifiedTopology: true,
+ // });
+
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+});
 
  const Product = mongoose.model(
      "products", 

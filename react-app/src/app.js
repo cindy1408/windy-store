@@ -52,7 +52,7 @@ class App extends React.Component {
   };
 
 
-  //mongodb+srv://Windy:8Lhe9YTTCnZBzI2K@cluster0.kprsc.mongodb.net/test?retryWrites=true&w=majority/checkout
+  // mongodb+srv://Windy:8Lhe9YTTCnZBzI2K@cluster0.kprsc.mongodb.net/test?retryWrites=true&w=majority/checkout
   async handleToken (token) {
     const response = await axios.post('/checkout', {
       token,

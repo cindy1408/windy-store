@@ -26,7 +26,6 @@ export const addToCart = (items, products) => (dispatch) => {
 
 
 //Remove from Cart Action 
-
 export const removeFromCart = (items, products) => (dispatch) => {
     const cartItems = items.slice().filter(
         x => x._id !== products._id

@@ -7,8 +7,8 @@
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "core-js": "^3.12.1",
-    "express": "^4.17.1",
-    "mongoose": "^5.12.12",
+    "express": "^4.18.2",
+    "mongoose": "^5.13.15",
     "nodemon": "^2.0.7",
     "shortid": "^2.2.16"
   },
